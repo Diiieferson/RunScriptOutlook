@@ -1,0 +1,36 @@
+Public Sub ProcessarAnexo2(Email As MailItem)
+  Dim DiretorioAnexos As String
+  Dim Anexo As Outlook.Attachment
+  Dim strExtension As String
+
+  DiretorioAnexos = "C:\Users\gabriel\Documents\xmlepdf\"
+
+  For Each Anexo In Email.Attachments
+    strExtension = Left(LCase(Anexo.FileName), 3)
+    If strExtension Like "pdf" _
+    Or strExtension Like "xml" Then
+      Anexo.SaveAsFile DiretorioAnexos & "\" & Anexo.FileName
+    End If
+  Next Anexo
+End Sub
+
+
+Public Sub ProcessarAnexo(Email As MailItem)
+    Dim DiretorioAnexos As String
+    DiretorioAnexos = "C:\Users\gabriel\Documents\xmlepdf\"
+
+    Dim MailID As String
+    Dim Mail As Outlook.MailItem
+ 
+    MailID = Email.EntryID
+    Set Mail = Application.Session.GetItemFromID(MailID)
+     
+    For Each Anexo In Mail.Attachments
+        If Right(Anexo.FileName, 3) = "xml" Then
+     
+            Anexo.SaveAsFile DiretorioAnexos & Anexo.FileName
+        End If
+    Next
+ 
+    Set Mail = Nothing
+End Sub
