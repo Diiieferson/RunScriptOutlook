@@ -1,0 +1,15 @@
+É preciso editar o registro.
+
+execute "regedit"
+
+procure a chave [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Outlook\Security]
+
+clique em Editar/Novo/Valor DWORD
+
+nomeie "EnableUnsafeClientMailRules" 
+
+valor 0X00000001
+
+
+
+https://onedrive.live.com/?id=6117FC33D161D286%2189288&cid=6117FC33D161D286
